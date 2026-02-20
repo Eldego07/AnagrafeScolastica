@@ -5,7 +5,8 @@
 package anagrafescolastica;
 
 import java.util.Objects;
-
+import java.io.*;
+import java.util.StringTokenizer;
 /**
  *
  * @author diego
@@ -21,6 +22,8 @@ public class Studente {
         this.indirizzo=indirizzo;
     }
 
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
