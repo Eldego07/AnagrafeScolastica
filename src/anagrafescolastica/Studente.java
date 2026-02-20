@@ -22,7 +22,9 @@ public class Studente {
         this.indirizzo=indirizzo;
     }
 
-    
+    public void CreaStudente(){
+        
+    }
     
     @Override
     public int hashCode() {
