@@ -12,12 +12,12 @@ import java.util.*;
  *
  * @author diego
  */
-public class Test {
+public class GestoreFile {
     public void Avvia(){
         Scanner input=new Scanner(System.in);
         FileWriter fw = null;
         PrintWriter pw = null;
-        Studente s;
+        Studente s = null;
         int scelta=0;
         while(scelta!=3){
             System.out.println("Inserisci Studenti[1]\n");

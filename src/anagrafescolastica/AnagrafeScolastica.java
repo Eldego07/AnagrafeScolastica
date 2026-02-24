@@ -15,7 +15,7 @@ public class AnagrafeScolastica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Test t= new Test();
+        GestoreFile t= new GestoreFile();
         t.Avvia();
     }
     
