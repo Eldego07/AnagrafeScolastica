@@ -4,6 +4,8 @@
  */
 package anagrafescolastica;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author diego
@@ -14,9 +16,11 @@ public class AnagrafeScolastica {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        GestoreFile t= new GestoreFile();
-        t.Avvia();
+        Anagrafe a = new Anagrafe();
+        
+        AnagrafeGUI frame = new AnagrafeGUI();
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setVisible(true);
     }
     
 }
