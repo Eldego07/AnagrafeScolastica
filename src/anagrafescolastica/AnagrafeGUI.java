@@ -4,6 +4,8 @@
  */
 package anagrafescolastica;
 
+import javax.swing.*;
+
 /**
  *
  * @author tadde
@@ -11,14 +13,38 @@ package anagrafescolastica;
 public class AnagrafeGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AnagrafeGUI.class.getName());
-
+    private Anagrafe a;
+    
     /**
      * Creates new form AnagrafeGUI
      */
     public AnagrafeGUI() {
         initComponents();
+        a = new Anagrafe();
+        lstAnagrafe.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
     }
 
+    public void aggiornaAnagrafe() {
+        /*atxAnagrafe.setText("");
+        
+        for (Studente s : a.getListaStudenti()) {
+            atxAnagrafe.append(s.toString() + "\n");
+        }*/
+    }
+    
+    public void selezionaStudente() {
+        
+        Studente studenteSelezionato;
+    
+        lstAnagrafe.addListSelectionListener(e -> {
+            int indexS;
+            
+            indexS=lstAnagrafe.getSelectedIndex();
+            a.getListaStudenti().get(indexS);
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,22 +54,172 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnlTitolo = new javax.swing.JPanel();
+        lblTitolo = new javax.swing.JLabel();
+        pnlAnagrafe = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstAnagrafe = new javax.swing.JList<>();
+        pnlBottoni = new javax.swing.JPanel();
+        btnAggiungi = new javax.swing.JButton();
+        btnRimuovi = new javax.swing.JButton();
+        btnCerca = new javax.swing.JButton();
+        btnCarica = new javax.swing.JButton();
+        btnSalva = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Anagrafe Scolastica");
+
+        pnlTitolo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        pnlTitolo.setLayout(new java.awt.BorderLayout());
+
+        lblTitolo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitolo.setText("Anagrafe Scolastica");
+        pnlTitolo.add(lblTitolo, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(pnlTitolo, java.awt.BorderLayout.PAGE_START);
+
+        pnlAnagrafe.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista Studenti", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        pnlAnagrafe.setPreferredSize(new java.awt.Dimension(300, 348));
+        pnlAnagrafe.setLayout(new java.awt.BorderLayout());
+
+        lstAnagrafe.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        lstAnagrafe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstAnagrafeValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lstAnagrafe);
+
+        pnlAnagrafe.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(pnlAnagrafe, java.awt.BorderLayout.LINE_START);
+
+        pnlBottoni.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        btnAggiungi.setText("Aggiungi Studente");
+        btnAggiungi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAggiungiActionPerformed(evt);
+            }
+        });
+
+        btnRimuovi.setText("Rimuovi Studente");
+        btnRimuovi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRimuoviActionPerformed(evt);
+            }
+        });
+
+        btnCerca.setText("Cerca Studente");
+        btnCerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCercaActionPerformed(evt);
+            }
+        });
+
+        btnCarica.setText("Carica File");
+        btnCarica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaActionPerformed(evt);
+            }
+        });
+
+        btnSalva.setText("Salva File");
+        btnSalva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBottoniLayout = new javax.swing.GroupLayout(pnlBottoni);
+        pnlBottoni.setLayout(pnlBottoniLayout);
+        pnlBottoniLayout.setHorizontalGroup(
+            pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBottoniLayout.createSequentialGroup()
+                .addGroup(pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlBottoniLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRimuovi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCerca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCarica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSalva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlBottoniLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        pnlBottoniLayout.setVerticalGroup(
+            pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBottoniLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCarica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalva, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        getContentPane().add(pnlBottoni, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggiungiActionPerformed
+        InputStudente iS = new InputStudente(this, true);
+        iS.setLocationRelativeTo(null);
+        iS.setVisible(true);
+        
+        String matricola = iS.getMatricola();
+        String nome = iS.getNome();
+        String cognome = iS.getCognome();
+        
+        a.aggiungiStudente(new Studente(matricola, nome, cognome));
+        
+        aggiornaAnagrafe();
+    }//GEN-LAST:event_btnAggiungiActionPerformed
+
+    private void btnRimuoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRimuoviActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRimuoviActionPerformed
+
+    private void btnCercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCercaActionPerformed
+
+    private void btnCaricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCaricaActionPerformed
+
+    private void btnSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvaActionPerformed
+
+    private void lstAnagrafeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstAnagrafeValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstAnagrafeValueChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAggiungi;
+    private javax.swing.JButton btnCarica;
+    private javax.swing.JButton btnCerca;
+    private javax.swing.JButton btnRimuovi;
+    private javax.swing.JButton btnSalva;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTitolo;
+    private javax.swing.JList<String> lstAnagrafe;
+    private javax.swing.JPanel pnlAnagrafe;
+    private javax.swing.JPanel pnlBottoni;
+    private javax.swing.JPanel pnlTitolo;
     // End of variables declaration//GEN-END:variables
 }

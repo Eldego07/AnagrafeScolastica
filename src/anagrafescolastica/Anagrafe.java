@@ -52,4 +52,17 @@ public class Anagrafe {
     public int numeroStudenti() {
         return listaStudenti.size();
     }
+
+    public ArrayList<Studente> getListaStudenti() {
+        return listaStudenti;
+    }
+
+    public HashSet<String> getInsiemeMatricole() {
+        return insiemeMatricole;
+    }
+
+    public HashMap<String, Studente> getMappaStudenti() {
+        return mappaStudenti;
+    }
+    
 }

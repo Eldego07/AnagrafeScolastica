@@ -15,11 +15,9 @@ public class AnagrafeScolastica {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Anagrafe a = new Anagrafe();
-        
+    public static void main(String[] args) {   
         AnagrafeGUI frame = new AnagrafeGUI();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
     
