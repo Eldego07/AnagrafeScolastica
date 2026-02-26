@@ -4,7 +4,8 @@
  */
 package anagrafescolastica;
 
-import javax.swing.*;
+import java.util.*;
+import javax.swing.table.*;
 
 /**
  *
@@ -14,6 +15,8 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AnagrafeGUI.class.getName());
     private Anagrafe a;
+    private GestioneFile gF;
+    private DefaultTableModel model = new DefaultTableModel(new String[]{"Matricola", "Nome", "Cognome"}, 18);
     
     /**
      * Creates new form AnagrafeGUI
@@ -21,28 +24,23 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     public AnagrafeGUI() {
         initComponents();
         a = new Anagrafe();
-        lstAnagrafe.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+        gF = new GestioneFile();
+        tblAnagrafe.setSize(pnlAnagrafe.getWidth(), pnlAnagrafe.getHeight());
+        tblAnagrafe.setModel(model);
     }
 
-    public void aggiornaAnagrafe() {
-        /*atxAnagrafe.setText("");
-        
+    public void aggiornaAnagrafe() { 
+        model.setRowCount(0);
         for (Studente s : a.getListaStudenti()) {
-            atxAnagrafe.append(s.toString() + "\n");
-        }*/
+            model.addRow(new Object[]{s.getMatricola(), s.getNome(), s.getCognome()});
+        }
     }
     
-    public void selezionaStudente() {
-        
-        Studente studenteSelezionato;
-    
-        lstAnagrafe.addListSelectionListener(e -> {
-            int indexS;
-            
-            indexS=lstAnagrafe.getSelectedIndex();
-            a.getListaStudenti().get(indexS);
-        });
+    public void rimuoviStudente() {
+        int rS = tblAnagrafe.getSelectedRow();
+        if (rS != -1) {
+            model.removeRow(rS);
+        }
     }
     
     /**
@@ -57,8 +55,8 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         pnlTitolo = new javax.swing.JPanel();
         lblTitolo = new javax.swing.JLabel();
         pnlAnagrafe = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstAnagrafe = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAnagrafe = new javax.swing.JTable();
         pnlBottoni = new javax.swing.JPanel();
         btnAggiungi = new javax.swing.JButton();
         btnRimuovi = new javax.swing.JButton();
@@ -83,19 +81,20 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         pnlAnagrafe.setPreferredSize(new java.awt.Dimension(300, 348));
         pnlAnagrafe.setLayout(new java.awt.BorderLayout());
 
-        lstAnagrafe.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        lstAnagrafe.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstAnagrafeValueChanged(evt);
+        tblAnagrafe.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        jScrollPane2.setViewportView(lstAnagrafe);
+        ));
+        jScrollPane1.setViewportView(tblAnagrafe);
 
-        pnlAnagrafe.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        pnlAnagrafe.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnlAnagrafe, java.awt.BorderLayout.LINE_START);
 
@@ -141,17 +140,13 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         pnlBottoniLayout.setHorizontalGroup(
             pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBottoniLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlBottoniLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlBottoniLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRimuovi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCerca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCarica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlBottoniLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnRimuovi, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerca, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCarica, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalva, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         pnlBottoniLayout.setVerticalGroup(
@@ -190,24 +185,30 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAggiungiActionPerformed
 
     private void btnRimuoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRimuoviActionPerformed
-        // TODO add your handling code here:
+        rimuoviStudente();
     }//GEN-LAST:event_btnRimuoviActionPerformed
 
     private void btnCercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCercaActionPerformed
 
     private void btnCaricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaActionPerformed
-        // TODO add your handling code here:
+        SceltaFile sF = new SceltaFile(this, true);
+        sF.setLocationRelativeTo(null);
+        sF.setVisible(true);
+        
+        a.svuota();
+        
+        ArrayList<Studente> studentiFile = gF.caricaDaFile(sF.getFile());
+        for (Studente s : studentiFile) {
+            a.aggiungiStudente(s);
+        }
+        aggiornaAnagrafe();
     }//GEN-LAST:event_btnCaricaActionPerformed
 
     private void btnSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaActionPerformed
-        // TODO add your handling code here:
+        gF.salvaSuFile("testo.txt", a.getTuttiStudenti());
     }//GEN-LAST:event_btnSalvaActionPerformed
-
-    private void lstAnagrafeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstAnagrafeValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstAnagrafeValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAggiungi;
@@ -215,11 +216,11 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnCerca;
     private javax.swing.JButton btnRimuovi;
     private javax.swing.JButton btnSalva;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitolo;
-    private javax.swing.JList<String> lstAnagrafe;
     private javax.swing.JPanel pnlAnagrafe;
     private javax.swing.JPanel pnlBottoni;
     private javax.swing.JPanel pnlTitolo;
+    private javax.swing.JTable tblAnagrafe;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,14 +19,12 @@ public class GestioneFile {
         try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                /*
                 linea = linea.trim();
                 if (linea.isEmpty()) continue;
                 String[] parti = linea.split(":");
                 if (parti.length == 3) {
-                */
-                String[] parti = linea.split(":");
-                lista.add(new Studente(parti[0], parti[1], parti[2]));
+                    lista.add(new Studente(parti[0], parti[1], parti[2]));
+                }
             }
         } catch (IOException e) {
             System.err.println("Errore durante la lettura del file: " + e.getMessage());

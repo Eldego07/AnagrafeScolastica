@@ -40,6 +40,12 @@ public class Anagrafe {
         listaStudenti.remove(s);
         return true;
     }
+    
+    public void svuota() {
+        listaStudenti.clear();
+        insiemeMatricole.clear();
+        mappaStudenti.clear();
+    }
 
     public Studente cercaStudente(String matricola) {
         return mappaStudenti.get(matricola);
@@ -64,5 +70,5 @@ public class Anagrafe {
     public HashMap<String, Studente> getMappaStudenti() {
         return mappaStudenti;
     }
-    
+ 
 }
