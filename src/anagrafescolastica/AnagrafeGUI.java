@@ -36,6 +36,14 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         }
     }
     
+    public void ricercaAnagrafe(String matricola) {
+        model.setRowCount(0);
+        Studente s = a.cercaStudente(matricola);
+        if (s != null) {
+            model.addRow(new Object[]{s.getMatricola(), s.getNome(), s.getCognome()});
+        }
+    }
+    
     public void rimuoviStudente() {
         int rS = tblAnagrafe.getSelectedRow();
         if (rS != -1) {
@@ -78,9 +86,10 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         getContentPane().add(pnlTitolo, java.awt.BorderLayout.PAGE_START);
 
         pnlAnagrafe.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista Studenti", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
-        pnlAnagrafe.setPreferredSize(new java.awt.Dimension(300, 348));
+        pnlAnagrafe.setPreferredSize(new java.awt.Dimension(500, 400));
         pnlAnagrafe.setLayout(new java.awt.BorderLayout());
 
+        tblAnagrafe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblAnagrafe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -92,6 +101,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAnagrafe.setPreferredSize(new java.awt.Dimension(500, 80));
         jScrollPane1.setViewportView(tblAnagrafe);
 
         pnlAnagrafe.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -100,6 +110,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
 
         pnlBottoni.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        btnAggiungi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAggiungi.setText("Aggiungi Studente");
         btnAggiungi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +118,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
             }
         });
 
+        btnRimuovi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRimuovi.setText("Rimuovi Studente");
         btnRimuovi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +126,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
             }
         });
 
+        btnCerca.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCerca.setText("Cerca Studente");
         btnCerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +134,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
             }
         });
 
+        btnCarica.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCarica.setText("Carica File");
         btnCarica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +142,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
             }
         });
 
+        btnSalva.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSalva.setText("Salva File");
         btnSalva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +180,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(pnlBottoni, java.awt.BorderLayout.CENTER);
+        getContentPane().add(pnlBottoni, java.awt.BorderLayout.EAST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,7 +204,12 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRimuoviActionPerformed
 
     private void btnCercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCercaActionPerformed
+        CercaStudente cS = new CercaStudente(this, true);
+        cS.setLocationRelativeTo(null);
+        cS.setVisible(true);
         
+        String matricola = cS.getMatricola();
+        ricercaAnagrafe(matricola);
     }//GEN-LAST:event_btnCercaActionPerformed
 
     private void btnCaricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaActionPerformed

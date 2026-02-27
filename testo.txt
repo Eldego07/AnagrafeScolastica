@@ -1,3 +1,6 @@
 67:Taddeo:Taboada
 89:Ciccio:Gamer
 07:Eldego:Casolaro
+88:Stefano:Lepri
+90:La:Paura
+23:LeBron:James
