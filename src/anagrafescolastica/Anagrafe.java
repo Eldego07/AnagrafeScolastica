@@ -65,49 +65,49 @@ public class Anagrafe {
     }
 
     /**
-     * 
-     * @param matricola
-     * @return 
+     * Metodo che restituisce uno studente
+     * @param matricola la matricola dello studente
+     * @return lo studente
      */
     public Studente cercaStudente(String matricola) {
         return mappaStudenti.get(matricola);
     }
 
     /**
-     * 
-     * @return 
+     * Metodo get di listaStudenti che la restituisce sottoforma di Collection
+     * @return listaStudenti
      */
     public Collection<Studente> getTuttiStudenti() {
         return Collections.unmodifiableList(listaStudenti);
     }
 
     /**
-     * 
-     * @return 
+     * Metodo che restituisce il numero di studenti
+     * @return la dimensione di listaStudenti
      */
     public int numeroStudenti() {
         return listaStudenti.size();
     }
 
     /**
-     * 
-     * @return 
+     * Metodo get di listaStudenti
+     * @return listaStudenti
      */
     public ArrayList<Studente> getListaStudenti() {
         return listaStudenti;
     }
 
     /**
-     * 
-     * @return 
+     * Metodo get di insiemeMatricole
+     * @return insiemeMatricole
      */
     public HashSet<String> getInsiemeMatricole() {
         return insiemeMatricole;
     }
 
     /**
-     * 
-     * @return 
+     * Metodo get di mappaStudenti
+     * @return mappaStudenti
      */
     public HashMap<String, Studente> getMappaStudenti() {
         return mappaStudenti;

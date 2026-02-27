@@ -14,9 +14,9 @@ import java.util.*;
 public class GestioneFile {
 
     /**
-     * 
-     * @param nomeFile
-     * @return 
+     * Metodo che legge un file
+     * @param nomeFile nome del file da leggere
+     * @return L'ArrayList di studenti letti
      */
     public ArrayList<Studente> caricaDaFile(String nomeFile) {
         ArrayList<Studente> lista = new ArrayList<>();
@@ -25,7 +25,6 @@ public class GestioneFile {
             String linea;
             while ((linea = br.readLine()) != null) {
                 linea = linea.trim();
-                if (linea.isEmpty()) continue;
                 String[] parti = linea.split(":");
                 if (parti.length == 3) {
                     lista.add(new Studente(parti[0], parti[1], parti[2]));
@@ -38,9 +37,9 @@ public class GestioneFile {
     }
 
     /**
-     * 
-     * @param nomeFile
-     * @param studenti 
+     * Metodo che scrive un file
+     * @param nomeFile nome del file da scrivere
+     * @param studenti La collection di studenti da scrivere
      */
     public void salvaSuFile(String nomeFile, java.util.Collection<Studente> studenti) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeFile))) {
