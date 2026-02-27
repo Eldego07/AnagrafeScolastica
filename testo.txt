@@ -2,5 +2,6 @@
 89:Ciccio:Gamer
 07:Eldego:Casolaro
 88:Stefano:Lepri
-90:La:Paura
 23:LeBron:James
+43:Lello:Goretti
+10:Lionel:Messi

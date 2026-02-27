@@ -16,7 +16,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AnagrafeGUI.class.getName());
     private Anagrafe a;
     private GestioneFile gF;
-    private DefaultTableModel model = new DefaultTableModel(new String[]{"Matricola", "Nome", "Cognome"}, 18);
+    private DefaultTableModel model = new DefaultTableModel(new String[]{"Matricola", "Nome", "Cognome"}, 22);
     
     /**
      * Creates new form AnagrafeGUI
@@ -37,16 +37,20 @@ public class AnagrafeGUI extends javax.swing.JFrame {
     }
     
     public void ricercaAnagrafe(String matricola) {
-        model.setRowCount(0);
         Studente s = a.cercaStudente(matricola);
         if (s != null) {
+            model.setRowCount(0);
             model.addRow(new Object[]{s.getMatricola(), s.getNome(), s.getCognome()});
+        } else {
+            aggiornaAnagrafe();
         }
     }
     
     public void rimuoviStudente() {
         int rS = tblAnagrafe.getSelectedRow();
         if (rS != -1) {
+            String matricola = (String) model.getValueAt(rS, 0);
+            a.eliminaStudente(matricola);
             model.removeRow(rS);
         }
     }
@@ -75,6 +79,7 @@ public class AnagrafeGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Anagrafe Scolastica");
 
+        pnlTitolo.setBackground(new java.awt.Color(0, 204, 204));
         pnlTitolo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlTitolo.setLayout(new java.awt.BorderLayout());
 
@@ -95,13 +100,28 @@ public class AnagrafeGUI extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblAnagrafe.setPreferredSize(new java.awt.Dimension(500, 80));
+        tblAnagrafe.setMaximumSize(new java.awt.Dimension(2147483647, 1000000));
+        tblAnagrafe.setPreferredSize(new java.awt.Dimension(500, 400));
         jScrollPane1.setViewportView(tblAnagrafe);
 
         pnlAnagrafe.add(jScrollPane1, java.awt.BorderLayout.CENTER);

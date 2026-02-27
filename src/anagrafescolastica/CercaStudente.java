@@ -39,7 +39,9 @@ public class CercaStudente extends javax.swing.JDialog {
         btnConferma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cerca Studente");
 
+        pnlTitolo.setBackground(new java.awt.Color(0, 204, 204));
         pnlTitolo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlTitolo.setLayout(new java.awt.BorderLayout());
 

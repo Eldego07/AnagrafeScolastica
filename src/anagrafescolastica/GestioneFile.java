@@ -13,6 +13,11 @@ import java.util.*;
  */
 public class GestioneFile {
 
+    /**
+     * 
+     * @param nomeFile
+     * @return 
+     */
     public ArrayList<Studente> caricaDaFile(String nomeFile) {
         ArrayList<Studente> lista = new ArrayList<>();
         
@@ -32,6 +37,11 @@ public class GestioneFile {
         return lista;
     }
 
+    /**
+     * 
+     * @param nomeFile
+     * @param studenti 
+     */
     public void salvaSuFile(String nomeFile, java.util.Collection<Studente> studenti) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomeFile))) {
             for (Studente s : studenti) {

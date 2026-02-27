@@ -43,6 +43,7 @@ public class InputStudente extends javax.swing.JDialog {
         txtCognome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inserisci Studente");
 
         pnlConferma.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlConferma.setPreferredSize(new java.awt.Dimension(400, 75));
@@ -59,6 +60,7 @@ public class InputStudente extends javax.swing.JDialog {
 
         getContentPane().add(pnlConferma, java.awt.BorderLayout.PAGE_END);
 
+        pnlTitolo.setBackground(new java.awt.Color(0, 204, 204));
         pnlTitolo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlTitolo.setLayout(new java.awt.BorderLayout());
 

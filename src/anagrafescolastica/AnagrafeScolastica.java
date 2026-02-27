@@ -4,8 +4,6 @@
  */
 package anagrafescolastica;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author diego

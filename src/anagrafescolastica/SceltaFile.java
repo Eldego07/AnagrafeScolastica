@@ -59,7 +59,9 @@ public class SceltaFile extends javax.swing.JDialog {
         lblErrore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Scegli File");
 
+        pnlTitolo.setBackground(new java.awt.Color(0, 204, 204));
         pnlTitolo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlTitolo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         pnlTitolo.setLayout(new java.awt.BorderLayout());
